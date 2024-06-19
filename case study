@@ -1,0 +1,167 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# ## Import libraries required for data analysis
+
+# In[1]:
+
+
+import seaborn as sms
+
+
+# ## Display all example datasets from seaborn 
+
+# In[2]:
+
+
+sms.get_dataset_names()
+
+
+# ## Import 'titanic' dataset from seaborn
+
+# In[3]:
+
+
+df=sms.load_dataset('titanic')
+df.head()
+
+
+# ## Display first and last 5 rows 
+
+# In[4]:
+
+
+df.head()
+
+
+# In[5]:
+
+
+df.tail()
+
+
+# ## Display the shape of dataset
+
+# In[6]:
+
+
+df.shape
+
+
+# In[7]:
+
+
+print("Number of rows:",df.shape[0])
+print("Number of column:",df.shape[1])
+
+
+# # Describe of dataset
+
+# In[23]:
+
+
+df.describe ()
+
+
+# #             Univariate Analysis
+
+# # Q1- Which gender had a greater presence among the passengers
+
+# In[8]:
+
+
+sms.countplot(data=df,x='sex');
+
+# Answer -male passengers has  a greater presence among the passengers
+# # Q2. Which passengers class had fewer number of passengers?
+
+# In[9]:
+
+
+sms.countplot(data=df,x='class')
+
+
+# # Answer - Second class had fewer number of passengers
+
+# # Q3. Was the number of passengers who survived greater or less than the number of passengers who did not survive?
+# 
+
+# In[10]:
+
+
+sms.countplot(data=df, x='survived')
+
+
+# # Answer= The number of passengers who did not survive was greater
+
+# # Q4. From which town most number of passengers embarked?
+
+# In[11]:
+
+
+sms.countplot(data=df,x='embark_town')
+
+
+# # Answer = From southampton most passengers embarked
+
+# # Q5. How does the survival rate differ between males and females ? 
+
+# In[12]:
+
+
+sms.countplot(data=df,x='sex',hue='survived');
+
+
+# # Answer = The survival rates is more in females as compared to males 
+
+# # Q6.Which class passengers NOT survived more in numbers?
+
+# In[13]:
+
+
+sms.countplot(data=df,x='survived',hue='class')
+
+
+# # Answer= Third class passengers are the most which did not survived
+
+# # Q7.Avg fare was high for which gender?
+
+# In[16]:
+
+
+import numpy as np 
+sms.barplot (data=df, x='sex',y='fare')
+'''sms.barplot (data=df, x='sex',y='fare',ci='false')'''
+
+
+# # Answer = Avg fare was higher for females
+
+# # Q8.Explore the relationship between fare and survival.Do passengers who paid higher fares have a better chance of survival
+
+# In[17]:
+
+
+sms.barplot(data=df,x='survived',y='fare')
+
+
+# # Answer = This simply shows Higher fare means more survival
+
+# # Q9.Which town embarked passengers survived least in number?
+
+# In[20]:
+
+
+sms.countplot (data=df,x='embark_town',hue='survived')
+
+
+# # Answer= Queenstown town passengers survived least in number.
+
+# # Q10. Ivestigate the relationship between age and survival .Are younger passengers more likely to survive?
+
+# In[21]:
+
+
+sms.boxplot (data=df,x='survived',y='age')
+
+
+# # Answer= Yes younger passengers are more likely to survive.
